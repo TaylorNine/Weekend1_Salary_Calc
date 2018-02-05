@@ -1,0 +1,78 @@
+/****************************************
+ASSIGNMENT: Salary Calculator
+DUE DATE:   02/05/18 at 9:00 AM
+AUTHOR:     TAYLOR FEDT
+VERSION:    1.0.0
+****************************************/
+
+//------ 01 IMPORTS ------//
+
+// GLOBAL PARTIALS
+@import "partials/_variables.scss";
+
+
+// COMPONENTS
+//@import "partials/_buttons.scss";
+//@import "partials/forms";
+
+//------ 02 MAIN ELEMENTS ------//
+
+html {
+    height: 100%; 
+    font-size:18px;
+}
+
+body {
+    font-family: $sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.frow-container {
+    min-height: 400px;
+}
+
+.frow {
+    & .form-element {padding:20px;}
+}
+
+#results {margin-top:30px;}
+
+.align-center {text-align: center;} 
+
+h1, h2, h3, h4, h5, h6 {font-weight: $font-weight-bold;}
+
+h1 {
+    font-size: $h1-font-size;
+}
+h2 {
+    font-size: $h2-font-size;
+}
+h3 {
+    font-size: $h3-font-size;
+}
+h4 {
+    font-size: $h4-font-size;
+}
+h5 {
+    font-size: $h5-font-size;
+}
+h6 { 
+    font-size: $h6-font-size;
+}
+
+.display-1, .display-2, .display-3, .display-4 {font-weight: $display1-weight;}
+
+.display-1 {
+    font-size: $display1-size;
+    line-height: $display-line-height;
+}
+.display-2 {
+    font-size: $display2-size;
+}
+.display-3 {
+    font-size: $display3-size;
+}
+.display-4 {
+    font-size: $display4-size;
+}

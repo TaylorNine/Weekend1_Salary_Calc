@@ -1,0 +1,389 @@
+
+/*--------------------------------
+VARIABLES PARTIAL
+
+00 MIXINS
+01 COLORS
+02 COLOR FUNCTIONS
+    - BG COLOR
+    - TEXT COLOR
+03 FONT VARIABLES
+04 INPUT VARIABLES
+--------------------------------*/
+
+/*----------------------------------
+// 00 MIXINS
+// DEFINE MIXINS FOR PROPERTIES
+----------------------------------*/
+
+/* property name | duration | timing function | delay */
+@mixin transition($prop,$duration,$timing,$delay){
+    transition-property: $prop; 
+    transition-duration: $duration; 
+    transition-timing-function: $timing;
+    transition-delay: $delay;
+}
+
+// generic transform
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+      -o-transform: $transforms;
+     -ms-transform: $transforms;
+ -webkit-transform: $transforms;
+       transform: $transforms;
+}
+
+// rotate
+@mixin rotate ($deg) {
+@include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+  @include transform(scale($scale));
+} 
+
+// translate
+@mixin translate ($x, $y) {
+@include transform(translate($x, $y));
+}
+
+// skew
+@mixin skew ($x, $y) {
+@include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+//transform origin
+@mixin transform-origin ($origin) {
+ moz-transform-origin: $origin;
+      -o-transform-origin: $origin;
+     -ms-transform-origin: $origin;
+ -webkit-transform-origin: $origin;
+       transform-origin: $origin;
+}
+
+/*----------------------------------
+// 01 COLORS
+// DEFINE & CREATE MAPS FOR FUNCTIONS
+----------------------------------*/
+
+// PURPLES
+$p1:    #091424;
+$p2:    #1E2937;
+$p3:    #28364A;
+$p4:    #445C7D;
+$p5:    #6A7C97;
+$p6:    #B4BECB;
+$p7:    #CBD8E9; 
+$p7:    #D9E3EF;
+$p8:    #E8EEF5;
+
+// COLOR MAP
+$purple-colors: () !default;
+$purple-colors: map-merge((
+  "p1":    $p1,
+  "p2":    $p2,
+  "p3":    $p3,
+  "p4":    $p4,
+  "p5":    $p5,
+  "p6":    $p6,
+  "p7":    $p7,
+  "p8":    $p8,
+), $purple-colors);
+
+// GREENS
+$g1:    #093125;
+$g2:    #12624b;
+$g3:    #1b9370;
+$g4:    #41c49e;
+$g5:    #4fd0ab;
+$g6:    #7bdcc0;
+$g7:    #a7e7d5;
+$g8:    #d3f3ea; 
+
+$green-colors: () !default;
+$green-colors: map-merge((
+  "g1":    $g1,
+  "g2":    $g2,
+  "g3":    $g3,
+  "g4":    $g4,
+  "g5":    $g5,
+  "g6":    $g6,
+  "g7":    $g7,
+  "g8":    $g8,
+), $green-colors);
+
+
+// BLUES
+$bp1:   #102C40;
+$bp2:   #205880;
+$bp3:   #3083BF;
+$bp4:   #40AFFF;
+$bp5:   #66bfff;
+$bp6:   #8ccfff;
+$bp7:   #b3dfff;
+$bp8:   #d9efff;
+
+$primary-blue-colors: () !default;
+$primary-blue-colors: map-merge((
+  "bp1":    $bp1,
+  "bp2":    $bp2,
+  "bp3":    $bp3,
+  "bp4":    $bp4,
+  "bp5":    $bp5,
+  "bp6":    $bp6,
+  "bp7":    $bp7,
+  "bp8":    $bp8,
+), $primary-blue-colors);
+
+
+// LIGHT BLUES
+$bs1:   #151140;
+$bs2:   #175b80;
+$bs3:   #2288bf;
+$bs4:   #58c4ff;
+$bs5:   #81d3ff;
+$bs6:   #94d9ff;
+$bs7:   #abe2ff;
+$bs8:   #d5f0ff; 
+
+$secondary-blue-colors: () !default;
+$secondary-blue-colors: map-merge((
+  "bs1":    $bs1,
+  "bs2":    $bs2,
+  "bs3":    $bs3,
+  "bs4":    $bs4,
+  "bs5":    $bs5,
+  "bs6":    $bs6,
+  "bs7":    $bs7,
+  "bs8":    $bs8,
+), $secondary-blue-colors);
+
+
+// REDS
+$rp1:   #330915;
+$rp2:   #66122A;
+$rp3:   #991b3e;
+$brand: #cc2453;
+$rp5:   #d65075;
+$rp6:   #e07c98;
+$rp7:   #f5d3dd;
+
+$primary-red-colors: () !default;
+$primary-red-colors: map-merge((
+  "rp1":    $rp1,
+  "rp2":    $rp2,
+  "rp3":    $rp3,
+  "brand":  $brand,
+  "rp5":    $rp5,
+  "rp6":    $rp6,
+  "rp7":    $rp7,
+), $primary-red-colors);
+
+// REDS 2
+$rs1:   #290F16;
+$rs2:   #521E2D;
+$rs3:   #7B2C43;
+$rs4:   #A43B59;
+$rs5:   #B6627A;
+$rs6:   #C8899B;
+$rs7:   #DBB1BD;
+$rs8:   #edd8de;
+
+$secondary-red-colors: () !default;
+$secondary-red-colors: map-merge((
+  "rs1":    $rs1,
+  "rs2":    $rs2,
+  "rs3":    $rs3,
+  "rs4":    $rs4,
+  "rs5":    $rs5,
+  "rs6":    $rs6,
+  "rs7":    $rs7,
+  "rs8":    $rs8,
+), $secondary-red-colors);
+
+// MASTER COLOR MAP
+$all-colors: () !default;
+$all-colors: map-merge((
+    "p1":    $p1,
+    "p2":    $p2,
+    "p3":    $p3,
+    "p4":    $p4,
+    "p5":    $p5,
+    "p6":    $p6,
+    "p7":    $p7,
+    "p8":    $p8,
+    "g1":    $g1,
+    "g2":    $g2,
+    "g3":    $g3,
+    "g4":    $g4,
+    "g5":    $g5,
+    "g6":    $g6,
+    "g7":    $g7,
+    "g8":    $g8,
+    "bp1":    $bp1,
+    "bp2":    $bp2,
+    "bp3":    $bp3,
+    "bp4":    $bp4,
+    "bp5":    $bp5,
+    "bp6":    $bp6,
+    "bp7":    $bp7,
+    "bp8":    $bp8,
+    "bs1":    $bs1,
+    "bs2":    $bs2,
+    "bs3":    $bs3,
+    "bs4":    $bs4,
+    "bs5":    $bs5,
+    "bs6":    $bs6,
+    "bs7":    $bs7,
+    "bs8":    $bs8,
+    "rp1":    $rp1,
+    "rp2":    $rp2,
+    "rp3":    $rp3,
+    "brand":  $brand,
+    "rp5":    $rp5,
+    "rp6":    $rp6,
+    "rp7":    $rp7,
+    "rs1":    $rs1,
+    "rs2":    $rs2,
+    "rs3":    $rs3,
+    "rs4":    $rs4,
+    "rs5":    $rs5,
+    "rs6":    $rs6,
+    "rs7":    $rs7,
+    "rs8":    $rs8
+), $all-colors);
+// YELLOW
+$y1:    rgb(255, 224, 85);
+$y2:    darken($y1,10%);  
+// NEUTRAL
+$n1:      #ebebeb;
+$n2:      darken($n1, 5%);
+$n3:      darken($n2, 10%);
+
+
+/*----------------------------------
+// 02 COLOR FUNCTIONS
+// BACKGROUND & TEXT COLORS
+----------------------------------*/
+
+/* BACKGROUND COLOR FUNCTION */
+/* ALL COLORS */
+@each $color, $bgcolor in $all-colors {
+    bg-#{$color} {
+      background-color: $bgcolor;
+    }
+  }
+
+/* TEXT COLOR FUNCTION */
+/* ALL COLORS */
+@each $color, $txtcolor in $all-colors {
+    txt-#{$color} {
+      color: $txtcolor;
+    }
+  }
+
+/*----------------------------------
+// 03 FONT VARIABLES
+// VARIABLES FOR FONTS
+----------------------------------*/
+$font-size-base:        1rem !default;
+$font-weight-light:     300 !default;
+$font-weight-normal:    400 !default;
+$font-weight-bold:      700 !default;
+$sans-serif: "Roboto", "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+
+$h1-font-size:  $font-size-base * 2.5 + rem !default;
+$h2-font-size:  $font-size-base * 2 + rem !default;
+$h3-font-size:  $font-size-base * 1.75 + rem !default;
+$h4-font-size:  $font-size-base * 1.5 + rem !default;
+$h5-font-size:  $font-size-base * 1.25 + rem !default;
+$h6-font-size:  $font-size-base * 1 + rem !default;
+
+$headings-line-height:  1.25 !default;
+
+$display1-size:               6rem   !default;
+$display2-size:               5.5rem !default;
+$display3-size:               4.5rem !default;
+$display4-size:               3.5rem !default;
+
+$display1-weight:             300 !default;
+$display2-weight:             300 !default;
+$display3-weight:             300 !default;
+$display4-weight:             300 !default;
+$display-line-height:         $headings-line-height !default;
+
+/*----------------------------------
+// 04 INPUT VARIABLES
+// VARIABLES FOR INPUTS
+----------------------------------*/
+input {
+  background-color: transparent;
+  border-bottom: 3px solid $p4;
+  border-radius: 0px;
+  color: $p4;
+  font-size:1.25rem;
+  font-weight:300;
+  padding: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  transition: border-bottom, 0.5ms, ease-in-out, 0ms;
+}
+
+input:hover {
+    border-bottom: 3px solid $p6;
+    outline: none; 
+}
+
+input:focus {
+  border-bottom: 3px solid $g4;
+  color: $g4;
+  outline: none;
+}
+
+/*----------------------------------
+// 05 BUTTON VARIABLES
+// VARIABLES FOR BUTTONS
+----------------------------------*/
+
+@mixin btn-color($bgcolor,$txtcolor,$bdrcolor){
+    background: $bgcolor;
+    border-color: $bdrcolor;
+    color: $txtcolor;
+    @include transition(background, 0.5ms, ease-in-out, 0s);
+}
+
+/*
+$button-colors: () !default;
+$button-colors: map-merge((
+  "purple": (background-color: $p2, border-color: $p4, color: $p8),
+  "green": (background-color: $g2, border-color: $g4, color: $g8),
+  "blue-primary": (background-color: $bp2, border-color: $bp4, color: $bp8),
+  "blue-secondary": (background-color: $bs2, border-color: $bs4, color: $bs8),
+  "red-primary": (background-color: $rp2, border-color: $rp4, color: $rp8),
+  "red-secondary": (background-color: $rs2, border-color: $brand, color: $rs8),
+), $button-colors);
+*/
+
+
+.btn {
+    width:80%;
+    border-width: 1px; 
+    border-style: solid;
+    border-radius: 1px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    margin: 0 auto;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.btn-purple {
+    @include btn-color($p3, $p8, $p4);
+    &:hover {
+        background-color: darken($p3, 7%);
+        border-color: darken($p4, 7%);
+    }
+}
+
